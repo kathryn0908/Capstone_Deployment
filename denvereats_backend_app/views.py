@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets
-# , permissions
+from rest_framework import viewsets, permissions
 from .models import Restaurant, Trending
 from .serializers import RestaurantSerializer, TrendingSerializer
 
@@ -8,7 +7,7 @@ from .serializers import RestaurantSerializer, TrendingSerializer
 class RestaurantView(viewsets.ModelViewSet):
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
-    # permission_classes = (permissions.AllowAny,)
+    permission_classes = (permissions.AllowAny,)
     
 
     def __str__(self):
@@ -17,7 +16,7 @@ class RestaurantView(viewsets.ModelViewSet):
 class TrendingView(viewsets.ModelViewSet):
     queryset = Trending.objects.all()
     serializer_class = TrendingSerializer
-    # permission_classes = (permissions.AllowAny,)
+    permission_classes = (permissions.AllowAny,)
     
 
     def __str__(self):
