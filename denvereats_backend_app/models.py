@@ -29,62 +29,62 @@ class Trending(models.Model):
     title= models.TextField()
     description= models.TextField()
 
-# class User(AbstractUser):
-#     username=models.CharField(max_length=50, unique=True)
-#     password=models.CharField(max_length=50)
+class User(AbstractUser):
+    username=models.CharField(max_length=50, unique=True)
+    password=models.CharField(max_length=50)
     
-#     def __str__(self):
-#         return self.username
+    def __str__(self):
+        return self.username
 
-# class Favorite(models.Model):
-#     user = models.ForeignKey(
-#         User, 
-#         related_name="favorites", 
-#         on_delete=models.CASCADE, 
-#         null=True, 
-#         blank=True
-#     )
-#     restaurant = models.ForeignKey(
-#         Restaurant,
-#         related_name="favorites",
-#         on_delete=models.CASCADE,
-#         null=True,
-#         blank=True
-#     )
+class Favorite(models.Model):
+    user = models.ForeignKey(
+        User, 
+        related_name="favorites", 
+        on_delete=models.CASCADE, 
+        null=True, 
+        blank=True
+    )
+    restaurant = models.ForeignKey(
+        Restaurant,
+        related_name="favorites",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
 
-# class Review(models.Model):
-#     review = models.TextField(null=True)
-#     name = models.TextField(null=True)
-#     user = models.ForeignKey(
-#         User, 
-#         related_name="reviews", 
-#         on_delete=models.CASCADE,
-#         null=True 
-#     )
-#     restaurant = models.ForeignKey(
-#         Restaurant,
-#         related_name="reviews",
-#         on_delete=models.CASCADE,
-#         null=True
-#     )
+class Review(models.Model):
+    review = models.TextField(null=True)
+    name = models.TextField(null=True)
+    user = models.ForeignKey(
+        User, 
+        related_name="reviews", 
+        on_delete=models.CASCADE,
+        null=True 
+    )
+    restaurant = models.ForeignKey(
+        Restaurant,
+        related_name="reviews",
+        on_delete=models.CASCADE,
+        null=True
+    )
     
-#     rating = models.CharField(null=True, max_length=50)
-#     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    rating = models.CharField(null=True, max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
-# class StarRating(models.Model):
-#     value = models.IntegerField()
-#     user = models.ForeignKey(
-#         User, 
-#         related_name="ratings", 
-#         on_delete=models.CASCADE,
-#         null=True 
-#     )
-#     restaurant = models.ForeignKey(
-#         Restaurant,
-#         related_name="ratings",
-#         on_delete=models.CASCADE,
-#         null=True
-#     )
+class StarRating(models.Model):
+    value = models.IntegerField()
+    user = models.ForeignKey(
+        User, 
+        related_name="ratings", 
+        on_delete=models.CASCADE,
+        null=True 
+    )
+    restaurant = models.ForeignKey(
+        Restaurant,
+        related_name="ratings",
+        on_delete=models.CASCADE,
+        null=True
+    )
    
     
 

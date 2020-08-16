@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from . import models
-# from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password
 
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,3 +13,37 @@ class TrendingSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Trending 
         fields = ('id', 'image_url', 'url', 'title', 'description') 
+         
+class UserSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = models.User
+            fields = ('id', 'username', 'email', 'password', 'favorites', 'reviews') 
+            depth = 2
+            
+            
+        def create(self, validated_data):
+            user = models.User(
+                email = validated_data['email'],
+                username = validated_data['username'],
+                password = make_password(validated_data['password'])
+            )
+        
+            user.save()
+
+            return user   
+
+class FavoriteSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = models.Favorite 
+            fields = ('__all__') 
+            
+class StarRatingSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = models.StarRating 
+            fields = ('id', 'value', 'user', 'restaurant')
+
+class ReviewSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = models.Review
+            fields = ('__all__')
+            
